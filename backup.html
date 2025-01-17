@@ -1,0 +1,97 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="javax.sql.*" %>
+<%@ page errorPage="error.jsp" %>
+
+<%
+    // Retrieve form data
+    String name = request.getParameter("name");
+    String email = request.getParameter("email");
+    String phone = request.getParameter("phone");
+    String date = request.getParameter("date");
+    String time = request.getParameter("time");
+
+    // Process the date and time for display
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+    Date parsedDate = dateFormat.parse(date);
+    String formattedDate = dateFormat.format(parsedDate);
+    String formattedTime = "";
+
+    switch (time) {
+        case "morning":
+            formattedTime = "9:00 AM - 12:00 PM";
+            break;
+        case "afternoon":
+            formattedTime = "12:00 PM - 3:00 PM";
+            break;
+        case "evening":
+            formattedTime = "3:00 PM - 6:00 PM";
+            break;
+    }
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <label for="slot">Select the Slot:</label>
+    <button name="slot" value="Slot1" onclick="slot()">Slot1</button>
+    <button name="slot" value="Slot2" onclick="slot()">Slot2</button>
+    <button name="slot" value="Slot3" onclick="slot()">Slot3</button>
+    <button name="slot" value="Slot4" onclick="slot()">Slot4</button>
+    <script>
+        function checkAvailability() {
+            // Get the selected date and time
+            var selectedDate = new Date(document.getElementById("date").value);
+            var selectedTime = document.getElementById("time").value;
+
+            // Calculate the current date and time
+            var currentDate = new Date();
+            var currentHour = currentDate.getHours();
+
+            // Check if the selected time is not available for the next 3 hours
+            if (
+                selectedDate.setHours(0, 0, 0, 0) === currentDate.setHours(0, 0, 0, 0) &&
+                (
+                    (selectedTime === "morning" && currentHour >= 9) ||
+                    (selectedTime === "afternoon" && currentHour >= 12) ||
+                    (selectedTime === "evening" && currentHour >= 15)
+                )
+            ) {
+                alert("This time slot is not available for the next 3 hours. Please choose another time.");
+            } else {
+                // Submit the form if the time slot is available
+                document.getElementById("bookingForm").submit();
+            }
+        }
+    </script>
+
+
+    <h2>Booking Confirmation</h2>
+
+    <p>Thank you, <%= name %>, for booking your electric vehicle charging slot.</p>
+    <p>Your booking details:</p>
+
+    <ul>
+        <li><strong>Name:</strong> <%= name %></li>
+        <li><strong>Email:</strong> <%= email %></li>
+        <li><strong>Phone Number:</strong> <%= phone %></li>
+        <li><strong>Date:</strong> <%= formattedDate %></li>
+        <li><strong>Time Slot:</strong> <%= formattedTime %></li>
+    </ul>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<body onload="getLocation();"> 
+    <form class="myForm">
+        <input type="text" name="longitude">
+        <input type="text" name="latitude" id="">
+    </form>
+</body>
+<script type="text/javascript">
+    function getLocation(){
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition,showError);
+        }
+    }
+    function showPosition(position){
+        document.querySelector('.myForm input[name ="latitude"]').value=position.coords.latitude;
+        document.querySelector('.myForm input[name ="longitude"]').value=position.coords.longitude;
+    }
+    function showError (error){
+        switch(error.code){
+            case error.PERMISSION_DENIED:
+                alert("you Must Allow the request for geolocation to fill the form");
+                location.relod();
+                break;
+        }
+    };
+</script>

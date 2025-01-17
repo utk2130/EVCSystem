@@ -1,0 +1,19 @@
+
+div.container{
+    margin: 20px;
+    padding: 20px;
+    border-radius: 25px;
+    border: 2px solid blue;
+    text-align: center;
+}
+div.b1{
+    margin-top: 10px;
+    padding-top: 10px;
+}
+.veiw{
+    text-decoration: none;
+    
+}
+div.container input{
+    margin-right: 100px;
+}

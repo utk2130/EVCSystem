@@ -1,0 +1,60 @@
+.background{
+    color:red;
+    padding:auto;
+    margin:auto;
+    margin-bottom: 0px;
+    text-align:center;
+    position: absolute;
+}
+
+.background .searchbar{
+    margin: 200px;
+    margin-top: 100px;
+}
+
+.search{
+    border-radius: 25px;
+    border: 2px solid #4807c1;
+    padding: 20px;
+    width: 200px;
+    height: 10px;
+}
+
+.sbutton{
+    border-radius: 25px;
+    border: 2px solid black;
+    height: 50px;
+    width: 100px;
+    margin-left: 30px;
+}
+
+.image{
+    position: relative;
+    background-image: url(evstation.jpg);
+    background-color: #cccccc;
+    height: 500px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+}
+
+.navbar{
+    background-color: bisque;
+    text-align: end;
+    height: 40px;
+    width: auto;
+    position: relative;
+}
+
+div.nav ul {
+    display: inline-block;
+    top:10px;
+    margin:10px;
+    
+    /* background-color: aliceblue; */
+}
+
+div.nav ul.items li{
+    margin-left: 20px;
+}
