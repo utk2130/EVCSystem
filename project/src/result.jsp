@@ -1,8 +1,17 @@
+
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
 <%@ page errorPage="error.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book My Slot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="./SCSS/result.css" rel="stylesheet">
+</head>
 <%
 try {
     Class.forName("com.mysql.cj.jdbc.Driver");
@@ -14,33 +23,48 @@ try {
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setString(1, "%" + search + "%");
     ResultSet rs = ps.executeQuery();
+%>
+<body>
+<%
+        if(rs == null){
+        %> <script>
+                alert("Can't Find Station in ",<%= search %>);
+            </script>
+        <%
+        }else{
+%>
+    <div class="container">
+        <%@ include file="navbar.jsp" %>
+        <section>
+            <h2>Book Your Charging Slot</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Place</th>
+                    <th>Location</th>
+                    <th>Book</th>
+                </tr>
+            <%
+        }
+        while (rs.next()) {
+            String id = rs.getString("id");
+            String name = rs.getString("name");
+            String location = rs.getString("location");
+            String maps = rs.getString("map");
+        %>
 
-%>
-    <html>
-    <body>
-        <table border=1 cellspacing=0 cellpadding=10>
-            <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Place</td>
-                <td>Location</td>
-                <td>Book</td>
-            </tr>
-<%
-    while (rs.next()) {
-        String id = rs.getString("id");
-        String name = rs.getString("name");
-        String location = rs.getString("location");
-        String maps = rs.getString("map");
-%>
-            <tr>
-                <td><%= id %></td>
-                <td><%= name %></td>
-                <td><%= location %></td>
-                <td><iframe src="<%= maps %>"></iframe></td>
-                <td><input type="button" name="booking" onclick="book('<%= id %>')" value="Book"></td>
-            </tr>
-<%
+                <tr>
+                   <td><%= id %></td>
+                   <td><%= name %></td>
+                   <td><%= location %></td>
+                   <td><iframe src="<%= maps %>"></iframe></td>
+                   <td><button class="btn-book" onclick="book('<%= id %>')" >Book</button></td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <%
     }
     conn.close();
 } catch (Exception e) {
@@ -48,7 +72,6 @@ try {
     response.sendRedirect("error.jsp");
 }
 %>
-        </table>
         <script>
             function book(locationId) {
                
@@ -68,5 +91,5 @@ try {
 
             }
         </script>
-    </body>
-    </html>
+</body>
+</html>

@@ -30,7 +30,7 @@
 
 .image{
     position: relative;
-    background-image: url(evstation.jpg);
+    background-image: url(./images/evstation.jpg);
     background-color: #cccccc;
     height: 500px;
     background-position: center;

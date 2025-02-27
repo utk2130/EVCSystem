@@ -10,6 +10,7 @@
     String time = request.getParameter("time");
     String mob_no = request.getParameter("phone");
     String slot = request.getParameter("slot");
+    String uname=(String)session.getAttribute("uname");
 
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/evcharging", "root", "");
@@ -33,7 +34,7 @@
 <%
         } else {
             // If the slot and time are available, proceed with registration
-            String sql = "insert into bookings(v_name, v_no, name, email, phone, booking_date, booking_time, selected_slot) values(?,?,?,?,?,?,?,?)";
+            String sql = "insert into bookings(v_name, v_no, name, email, phone, booking_date, booking_time, selected_slot,username) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, vname);
             ps.setString(2, vno);
@@ -43,6 +44,7 @@
             ps.setString(6, date);
             ps.setString(7, time);
             ps.setString(8, slot);
+            ps.setString(9, uname);
 
             int rowsAffected = ps.executeUpdate();
 
@@ -64,7 +66,7 @@
         }
     } else {
         // If there are no conflicting records, proceed with registration
-        String sql = "insert into bookings(v_name, v_no, name, email, phone, booking_date, booking_time, selected_slot) values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into bookings(v_name, v_no, name, email, phone, booking_date, booking_time, selected_slot,username) values(?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, vname);
         ps.setString(2, vno);
@@ -74,6 +76,7 @@
         ps.setString(6, date);
         ps.setString(7, time);
         ps.setString(8, slot);
+        ps.setString(9, uname);
 
         int rowsAffected = ps.executeUpdate();
 

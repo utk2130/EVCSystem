@@ -1,0 +1,57 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a0435;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding-top: 50px;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+.navbar a {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 15px;
+}
+.navbar a.active {
+    color: #ff66b2;
+    border-bottom: 2px solid #ff66b2;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #2a0b4a;
+    border-radius: 10px;
+    overflow: hidden;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+th {
+    background: #ff66b2;
+}
+.btn-status {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+.confirmed {
+    background: #28a745;
+}
+.pending {
+    background: #ffc107;
+    color: #000;
+}

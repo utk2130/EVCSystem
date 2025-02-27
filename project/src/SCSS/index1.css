@@ -1,0 +1,131 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background: #1a0435;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80vh;
+  }
+  .hero-text {
+    max-width: 500px;
+  }
+  .hero-text h1 {
+    font-size: 48px;
+  }
+  .hero-text p {
+    color: #bbb;
+    margin: 20px 0;
+  }
+  .buttons .button {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .button:hover {
+    background: #ff66b2;
+    color: #fff;
+  }
+  .button {
+    border: 2px solid #ff66b2;
+    color: #ff66b2;
+    align-self: center;
+    margin-top: 10px;
+    background: transparent;
+  }
+  .hero-image img {
+    border-radius: 25px;
+    width: 500px;
+    float: initial;
+  }
+  b {
+    font-size: larger;
+    font-weight: bold;
+  }
+  .search {
+    border-radius: 25px;
+    border: 2px solid #4807c1;
+    padding: 20px;
+    width: 200px;
+    height: 10px;
+  }
+ 
+
+
+
+
+/* 
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a0435;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+.navbar a {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 15px;
+}
+.navbar a.active {
+    color: #ff66b2;
+    border-bottom: 2px solid #ff66b2;
+}
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80vh;
+}
+.hero-text {
+    max-width: 500px;
+}
+.hero-text h1 {
+    font-size: 48px;
+}
+.hero-text p {
+    color: #bbb;
+    margin: 20px 0;
+}
+.buttons a {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.btn-pink {
+    background: #ff66b2;
+    color: #fff;
+}
+.btn-outline {
+    border: 2px solid #ff66b2;
+    color: #ff66b2;
+}
+.hero-image img {
+    width: 500px;
+} */

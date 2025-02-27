@@ -1,5 +1,5 @@
 <html>
-<link href="addlocation.css" rel="stylesheet">
+<link href="./SCSS/addlocation.css" rel="stylesheet">
     <body>
     <form action="addlocation.jsp" method="post">
     <div class="container">

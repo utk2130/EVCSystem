@@ -11,7 +11,7 @@
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/evcharging", "root", "");
-
+            
             String sql = "SELECT * FROM user WHERE username=? AND password=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, uname);
@@ -21,7 +21,7 @@
 
             if (rs.next()) {
                 session.setAttribute("uname", uname);
-                response.sendRedirect("homepage.jsp");
+                response.sendRedirect("index.jsp");
             } else {
                 %>
                 <script>
@@ -40,14 +40,14 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<link href="userlogin.css" rel="stylesheet">
+<link href="./SCSS/userlogin.css" rel="stylesheet">
 
 
 </script>
 
 <section class="vh-150 gradient-custom">
   <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="row d-flex justify-content-center align-items-center h-20">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">

@@ -63,7 +63,7 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `v_name`, `v_no`, `name`, `email`, `phone`, `booking_date`, `booking_time`, `selected_slot`) VALUES
-(1, 'Bugati', 'MH 10 2024', 'Tanishq', 'tanshiq2024@gmail.com', '1234567890', '2023-12-23', 'morning', 'Slot1'),
+(1, 'Bugati', 'MH 10 2024', 'Tanishq', 'tanshiq2024@gmail.com', '1234567890', '2023-12-23', 'morning', 'Slot1');
 
 
 -- --------------------------------------------------------
