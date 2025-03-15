@@ -55,6 +55,10 @@ try {
     conn.close();
 } catch (Exception e) {
     e.printStackTrace();
-    response.sendRedirect("error.jsp");
+    %>
+        <script>
+            alert("Error: <%= e.getMessage() %>");
+        </script>
+    <%
 }
 %>

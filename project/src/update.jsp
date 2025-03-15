@@ -15,7 +15,9 @@ try {
     String mob_no = request.getParameter("mob_no");
     String id = request.getParameter("id");
 
-    String sql = "UPDATE user SET fname=?, lname=?, username=?, password=?, email=?, mob_no=? WHERE username=?";
+    String sql = "UPDATE user 
+                 SET fname=?, lname=?, username=?, password=?, email=?, mob_no=? 
+                 WHERE username=?";
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setString(1, fname);
     ps.setString(2, lname);
@@ -47,6 +49,10 @@ try {
     conn.close();
 } catch (Exception e) {
     e.printStackTrace();
-    response.sendRedirect("error.jsp");
+    %>
+        <script>
+            alert("Error: <%= e.getMessage() %>");
+        </script>
+    <%
 }
 %>

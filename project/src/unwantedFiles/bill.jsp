@@ -16,6 +16,7 @@
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/evcharging", "root", "");
+        
         String sql = "SELECT * FROM bookings WHERE id=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, bookingId);
@@ -34,6 +35,11 @@
         conn.close();
     } catch (Exception e) {
         e.printStackTrace();
+        %>
+          <script>
+              alert("Error: <%= e.getMessage() %>");
+          </script>
+        <%
     }
 %>
 

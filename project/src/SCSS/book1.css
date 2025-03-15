@@ -20,12 +20,16 @@ label, input, select {
 }
 button {
     background: #ff66b2;
-    color: #fff;
+    color: #ff66b2;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
+.button:hover {
+    background: #ff66b2;
+    color: #fff;
+  }
 
 
 

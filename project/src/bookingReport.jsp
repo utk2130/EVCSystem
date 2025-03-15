@@ -7,11 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electric Car Charging - Reservations</title>
+    <title>Book My Slot- Reservations</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="./SCSS/bookingReport.css" rel="stylesheet">
 </head>
 <body>
+
     <div class="container">
         <%@ include file="navbar.jsp" %>
 <%
@@ -37,16 +38,17 @@
                     <th>Mobile No</th>
                     <th>Slot</th>
                     <th>Status</th>
+                    <th>Payment</th>
                 </tr>
     <%
     while(rs.next()){
-        int id=rs.getInteger("id");
+        String id = rs.getString("id");
         String vname = rs.getString("v_name");
         String vno = rs.getString("v_no");
         String name = rs.getString("name");
         String email = rs.getString("email");
         String date = rs.getString("booking_date");
-        String time = rs.getString("booking_time");
+        String time = rs.getString("f_time")+" TO "+rs.getString("t_time");
         String mob_no = rs.getString("phone");
         String slot = rs.getString("selected_slot");
     %>
@@ -59,18 +61,27 @@
         <td><%= time %> </td>
         <td><%= mob_no %> </td>
         <td><%= slot %> </td>
-        <td><button class="btn-status confirmed" onclick="deleteAndMove('<%= vno %>')" >Confirmed</button></td>
+        <td><button class="btn-status confirmed" onclick="deleteAndMove('<%= id %>')" >Confirmed</button></td>
+        <td><button class="btn-status confirmed" onclick='redirectToPayment()' >Pay</button></td>
         </tr>
   <%
     }%>
             </table>
         </section>
+        <div id="loading" style="display:none; position: absolute;">
+            <img src="./images/loading.gif" alt="Loading..." width="50">
+            <p>Redirecting to Payment...</p>
+        </div>
     </div>
     <%
     conn.close();
     }catch(Exception e){
         e.printStackTrace();
-        response.sendRedirect("error.jsp");
+        %>
+            <script>
+                alert("Error: <%= e.getMessage() %>");
+            </script>
+        <%
     }
 %>
 
@@ -80,6 +91,18 @@
             window.location.href = "move_and_delete.jsp?id=" + id;
         }
     }
+
+    function showLoading() {
+        document.getElementById("loading").style.display = "block";
+    }
+
+    function redirectToPayment() {
+        showLoading(); // Show loading animation
+        setTimeout(function() {
+            window.location.href = "booking.jsp";
+        }, 2000);
+    }
+
 </script>
 </body>
 </html>

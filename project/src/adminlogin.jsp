@@ -20,8 +20,8 @@
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                session.setAttribute("uname", uname);
-                response.sendRedirect("adminDashboard.html");
+                session.setAttribute("admin", uname);
+                response.sendRedirect("adminDashboard.jsp");
             } else {
 %>
                 <script>
@@ -32,7 +32,11 @@
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp");
+            %>
+              <script>
+                  alert("Error: <%= e.getMessage() %>");
+              </script>
+            <%
         }
     }
 %>
