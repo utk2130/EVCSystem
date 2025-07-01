@@ -58,7 +58,7 @@ if(rs.next() || rs != null){
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
   var options = {
-    "key": "rzp_test_RqYqtM7HPhW5jY",
+    "key": "Enter_Your_Api_Key",
     "amount": <%= amount %>, // in paise
     "currency": "INR",
     "description": "Book My Slot",
