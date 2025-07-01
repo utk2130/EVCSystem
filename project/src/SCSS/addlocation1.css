@@ -1,20 +1,20 @@
 body {
-    background: linear-gradient(135deg, #1e0342, #38075c);
+    background: linear-gradient(135deg, #1e0342);
     font-family: Arial, sans-serif;
-    color: white;
-    display: flex;
+    color: #ff4da6;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
 .container {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     width: 350px;
     text-align: center;
+    justify-self: center;
 }
 input[type="text"], input[type="url"] {
     width: 100%;
@@ -35,10 +35,10 @@ input::placeholder {
     margin-top: 15px;
 }
 .button, .view {
-    background: #ff0080;
-    color: white;
+    background: transparent;
+    color: #ff4da6;
     padding: 10px 15px;
-    border: none;
+    border: 2px solid #ff4da6;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
@@ -46,6 +46,7 @@ input::placeholder {
 }
 .button:hover, .view:hover {
     background: #ff4da6;
+    color: #ddd;
 }
 .view {
     text-decoration: none;

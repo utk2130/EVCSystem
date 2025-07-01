@@ -3,8 +3,11 @@
 <%@ page errorPage="error.jsp" %>
 
 <%
-
-    String uname = request.getParameter("username");
+    String admin=(String) session.getAttribute("admin");
+    if(admin != null){
+      response.sendRedirect("adminDashboard.jsp");  
+    }
+    String aname = request.getParameter("username");
     String password = request.getParameter("password");
 
     if (request.getMethod().equalsIgnoreCase("post")) {
@@ -14,13 +17,13 @@
 
             String sql = "SELECT * FROM admin WHERE admin=? AND password=?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, uname);
+            ps.setString(1, aname);
             ps.setString(2, password);
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                session.setAttribute("admin", uname);
+                session.setAttribute("admin", aname);
                 response.sendRedirect("adminDashboard.jsp");
             } else {
 %>
@@ -82,8 +85,6 @@
           <div class="text-center text-lg-start mt-4 pt-2">
             <button type="submit" class="btn btn-primary btn-lg"
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                class="link-danger">Register</a></p>
           </div>
 
         </form>

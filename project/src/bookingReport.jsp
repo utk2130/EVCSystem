@@ -37,7 +37,6 @@
                     <th>Time</th>
                     <th>Mobile No</th>
                     <th>Slot</th>
-                    <th>Status</th>
                     <th>Payment</th>
                 </tr>
     <%
@@ -61,8 +60,7 @@
         <td><%= time %> </td>
         <td><%= mob_no %> </td>
         <td><%= slot %> </td>
-        <td><button class="btn-status confirmed" onclick="deleteAndMove('<%= id %>')" >Confirmed</button></td>
-        <td><button class="btn-status confirmed" onclick='redirectToPayment()' >Pay</button></td>
+        <td><button class="btn-status confirmed" onclick="redirectToPayment('<%= id %>')" >Pay</button></td>
         </tr>
   <%
     }%>
@@ -86,20 +84,15 @@
 %>
 
 <script>
-    function deleteAndMove(id) {
-        if (confirm("Are you sure you want to move and delete this record?")) {
-            window.location.href = "move_and_delete.jsp?id=" + id;
-        }
-    }
-
+    
     function showLoading() {
         document.getElementById("loading").style.display = "block";
     }
 
-    function redirectToPayment() {
+    function redirectToPayment(id) {
         showLoading(); // Show loading animation
         setTimeout(function() {
-            window.location.href = "booking.jsp";
+            window.location.href = "booking.jsp?id="+ id;
         }, 2000);
     }
 

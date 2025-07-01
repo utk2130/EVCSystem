@@ -19,7 +19,7 @@ label, input, select {
     padding: 8px;
 }
 button {
-    background: #ff66b2;
+    background: transparent;
     color: #ff66b2;
     padding: 10px;
     border: none;
@@ -29,6 +29,10 @@ button {
 .button:hover {
     background: #ff66b2;
     color: #fff;
+  }
+  .hero-text p {
+    color: #bbb;
+    margin: 20px 0;
   }
 
 

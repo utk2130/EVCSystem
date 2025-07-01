@@ -50,7 +50,7 @@
 </script>
 
 <section class="vh-150 gradient-custom">
-  <div class="container py-5 h-100">
+  <div class="container py-5 h-150">
     <div class="row d-flex justify-content-center align-items-center h-20">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">

@@ -8,16 +8,19 @@
     <link href="./SCSS/addlocation1.css" rel="stylesheet">
 </head>
 <body>
+<header>
+    <%@ include file="adminNav.jsp" %>
+</header>
     <div class="container">
-        <h2>Add Location</h2>
+        <h2>Add EV Station</h2>
         <form action="addlocation.jsp" method="post">
-            <label>Enter Name:</label>
+            <label>Enter Station Name:</label>
             <input type="text" name="place" placeholder="Enter place name" required>
             
-            <label>Enter Location:</label>
+            <label>Enter Station Location:</label>
             <input type="text" name="location" placeholder="Enter location" required>
             
-            <label>Enter Map URL:</label>
+            <label>Enter Station Map URL:</label>
             <input type="url" name="map" placeholder="Enter map link" required>
             
             <div class="b1">

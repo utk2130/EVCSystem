@@ -3,7 +3,8 @@
 <%@ page errorPage="error.jsp" %>
 
 <% 
-    if(session.getAttribute("uname") != null){
+try{
+    if(session.getAttribute("uname") != null || session.getAttribute("admin") != null){
         session.invalidate();
     %>
     <script>
@@ -13,4 +14,12 @@
     <%
         // response.sendRedirect("index.html");
     }
+}catch(Exception e){
+    e.printStackTrace();
+    %>
+        <script>
+            alert("Error: <%= e.getMessage() %>");
+        </script>
+    <%
+}
 %>

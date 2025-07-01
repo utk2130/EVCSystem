@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a0435;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.invoice-box {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #2a0b4a;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(255, 102, 178, 0.2);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ff66b2;
+    padding: 16px 24px;
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    font-size: 1.5em;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+}
+
+.row span {
+    color: #ccc;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #da0fd3;
+}
+
+.table th {
+    background: #ff66b2;
+    color: #fff;
+}
+
+.table td {
+    background: #3a125a;
+    color: #fff;
+}
+
+h3 {
+    text-align: right;
+    padding-top: 20px;
+    color: #ff66b2;
+    font-weight: 600;
+}
+
+.btn {
+    background-color: #da0fd3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    float: right;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff66b2;
+}

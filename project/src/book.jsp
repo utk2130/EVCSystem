@@ -66,7 +66,7 @@
             <option value="Slot4">Slot4</option>
         </select>
 
-        <button type="submit" Class="button" onclick="sendTime()">Book Slot</button>
+        <button type="submit " Class="button" onclick="sendTime()">Book Slot</button>
     </form>
 </body>
 </html>

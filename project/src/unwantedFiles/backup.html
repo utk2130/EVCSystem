@@ -95,3 +95,11 @@
 
 </body>
 </html>
+
+
+
+function deleteAndMove(id) {
+        if (confirm("Are you sure you want to move and delete this record?")) {
+            window.location.href = "move_and_delete.jsp?id=" + id;
+        }
+    }

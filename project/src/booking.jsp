@@ -2,17 +2,19 @@
 <%@ page import="javax.sql.*" %>
 <%@ page errorPage="error.jsp" %>
 
+<link href="./SCSS/booking.css" rel="stylesheet">
 <% 
+try{
+String id=request.getParameter("id");
 Class.forName("com.mysql.cj.jdbc.Driver");
 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/evcharging","root","");
-
-String getSql="SELECT * FROM bookings";
+String getSql="SELECT * FROM bookings WHERE id = ?";
 PreparedStatement ps=conn.prepareStatement(getSql);
+ps.setString(1,id);
 ResultSet rs=ps.executeQuery();
 
 // int amount=(int)session.getAttribute("price");
 if(rs.next() || rs != null){
-    String id = rs.getString("id");
     String vname = rs.getString("v_name");
     String vno = rs.getString("v_no");
     String name = rs.getString("name");
@@ -21,8 +23,8 @@ if(rs.next() || rs != null){
     String time = rs.getString("f_time")+" To "+rs.getString("t_time");
     String mob_no = rs.getString("phone");
     String slot = rs.getString("selected_slot");
-    String amount = rs.getString("amount");
-}
+    int amount = Integer.valueOf(rs.getString("amount"))*100;
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,60 +34,109 @@ if(rs.next() || rs != null){
   <title>Razorpay Payment</title>
 </head>
 <body>
-  <h1>Razorpay Payment Gateway Integration</h1>
-  <form id="payment-form">
-    <label for="vname">Vehicle Name:</label>
-    <input type="text" id="vname" name="vname" value="<%= vname %>" hidden>
-    <input type="text" id="vno" name="vno" value="<%= vno %>" hidden>
-    <input type="text" id="name" name="name" value="<%= name %>" hidden>
-    <input type="text" id="email" name="email" value="<%= email %>" hidden>
-    <input type="text" id="date" name="date" value="<%= date %>" hidden>
-    <input type="text" id="time" name="time" value="<%= time %>" hidden>
-    <input type="text" id="mob_no" name="mob_no" value="<%= mob_no %>" hidden>
-    <input type="text" id="slot" name="slot" value="<%= slot %>" hidden>
-    <label for="amount">Amount:</label>
-    <input type="number" id="amount" name="amount" value="<%= amount %>" hidden>
-    <button type="button" onclick="payNow()">Pay Now</button>
+<div class="container">
+<%@ include file="navbar.jsp" %>
+<div class="card">
+<div class="card-body ">
+<div class="container mb-5 mt-3">
+  <div class="row d-flex align-items-baseline">
+    <div class="col-xl-9 mb-2">
+      <h1>Razorpay Payment Gateway Integration</h1>
+    </div>
+    
+    <form id="payment-form">
+      <label for="vname">Vehicle Name: <%= vname %> </label>
+    <input type="text" id="vid" name="vid" value="<%= id %>" hidden>
+    <input type="text" id="amount" name="amount" value="<%= amount %>" >
+    <button id="rzp-button1">Pay</button>
   </form>
-
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <script>
-    async function payNow() {
-      const amount = document.getElementById('amount').value;
-
-      // Create order by calling the server endpoint
-      const response = await fetch('/create-order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  var options = {
+    "key": "rzp_test_RqYqtM7HPhW5jY",
+    "amount": <%= amount %>, // in paise
+    "currency": "INR",
+    "description": "Book My Slot",
+    "image": "example.com/image/rzp.jpg",
+    "prefill": {
+      "email": "<%= email %>",
+      "contact": "<%= mob_no %>"
+    },
+    config: {
+      display: {
+        blocks: {
+          utib: {
+            name: "Pay Using Axis Bank",
+            instruments: [
+              { method: "card", issuers: ["UTIB"] },
+              { method: "netbanking", banks: ["UTIB"] }
+            ]
+          },
+          other: {
+            name: "Other Payment Methods",
+            instruments: [
+              { method: "card", issuers: ["ICIC"] },
+              { method: 'netbanking' },
+              { method: 'upi' }
+            ]
+          },
+          banks: {
+            name: 'All Payment Options',
+            instruments: [
+              { method: 'upi' },
+              { method: 'card' },
+              { method: 'wallet' },
+              { method: 'netbanking' }
+            ]
+          },
         },
-        body: JSON.stringify({ amount, currency: 'INR', receipt: 'receipt#1', notes: {} })
-      });
-
-      const order = await response.json();
-
-      // Open Razorpay Checkout
-      const options = {
-        key: 'rzp_test_RqYqtM7HPhW5jY', // Replace with your Razorpay key_id
-        amount: amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        currency: 'INR',
-        name: 'Acme Corp',
-        description: 'Test Transaction',
-        order_id: 'order_IluGWxBm9U8zJ8', // This is the order_id created in the backend
-        callback_url: 'http://localhost:8080/paymentSuccess.jsp', // Your success URL
-        prefill: {
-          name: 'Gaurav Kumar',
-          email: 'gaurav.kumar@example.com',
-          contact: '9999999999'
-        },
-        theme: {
-          color: '#F37254'
-        },
-      };
-
-      const rzp = new Razorpay(options);
-      rzp.open();
+        sequence: ["block.utib", "block.other", "block.banks"],
+        preferences: {
+          show_default_blocks: true
+        }
+      }
+    },
+    "handler": function (response) {
+      alert("Payment successful!");
+      window.location.href = "paymentSuccess.jsp?payment_id=" + response.razorpay_payment_id + "&vid=" + "<%= id %>";
+    },
+    "modal": {
+      "ondismiss": function () {
+        if (confirm("Are you sure, you want to close the form?")) {
+          console.log("Checkout form closed by the user");
+        } else {
+          console.log("Complete the Payment");
+        }
+      }
     }
-  </script>
+  };
+
+  var rzp1 = new Razorpay(options);
+  document.getElementById('rzp-button1').onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+  };
+</script>
+
+</html>
+
 </body>
 </html>
+<% } 
+
+}catch(Exception e){
+        e.printStackTrace();
+        %>
+            <script>
+                alert("Error: <%= e.getMessage() %>");
+            </script>
+        <%
+  }%>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

@@ -70,7 +70,7 @@
 <script>
     function edit(id) {
         if (confirm("Are you sure you want to move and delete this record?")) {
-            window.location.href = "#jsp?id=" + id;
+            window.location.href = "edit.jsp?id=" + id;
         }
     }
 </script>

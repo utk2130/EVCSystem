@@ -5,7 +5,7 @@
    <div class="logo"><img src="./images/logo2.png" height="90px" /></div>
    <div>
        <a href="index.jsp">Home</a>
-       <a href="#">About</a>
+       <a href="about.jsp">About</a>
        <a href="bookingReport.jsp">Bookings</a>
        <a href="adminlogin.jsp">Admin</a>
        <% if(uname == null){ %>
